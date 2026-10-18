@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Zod schemas: search request validation for the API route and the page.
  * Bounded page sizes, enum-validated filters, safe defaults.
  */
@@ -26,12 +26,22 @@ export const providerEnum = z.enum([
   "brave",
 ]);
 
+/** Empty year inputs submit as "" - treat blank as "no filter", not 0. */
+const yearField = z.preprocess(
+  (v) => (typeof v === "string" && v.trim() === "" ? undefined : v),
+  z.coerce
+    .number({ message: "Year must be a number" })
+    .int("Year must be a whole number")
+    .min(1900, "Year must be 1900 or later")
+    .max(2100, "Year must be 2100 or earlier")
+    .optional(),
+);
 export const searchRequestSchema = z.object({
   q: z.string().trim().min(1, "Enter something to search for").max(500, "Query is too long"),
   mode: z.enum(["auto", "title-question", "exact-title", "keywords", "advanced"]).default("auto"),
   sort: z.enum(["relevance", "newest", "oldest", "citations"]).default("relevance"),
-  yearFrom: z.coerce.number().int().min(1900).max(2100).optional(),
-  yearTo: z.coerce.number().int().min(1900).max(2100).optional(),
+  yearFrom: yearField,
+  yearTo: yearField,
   types: z.string().max(200).optional(), // comma-separated enum values
   providers: z.string().max(200).optional(), // comma-separated enum values
   openAccess: z.enum(["true", "false"]).optional(),
