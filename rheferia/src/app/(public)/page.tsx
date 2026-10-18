@@ -39,7 +39,7 @@ export default function HomePage() {
           aria-hidden="true"
           className="hero-glow pointer-events-none absolute inset-0"
         />
-        <div className="relative mx-auto max-w-3xl px-4 pt-20 pb-16 text-center sm:px-6 sm:pt-28">
+        <div className="relative mx-auto max-w-3xl px-4 pt-12 pb-10 text-center sm:px-6 sm:pt-28 sm:pb-16">
           <p className="fade-up mb-4 inline-flex items-center gap-2 rounded-full border bg-card px-3.5 py-1 text-xs font-medium tracking-wide text-muted-foreground shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
             {brand.features.search}
@@ -58,7 +58,8 @@ export default function HomePage() {
             <label htmlFor="home-search" className="sr-only">
               Enter your study title, research question, DOI, or keywords
             </label>
-            <div className="search-shell flex items-center gap-2 rounded-xl border bg-card p-2 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background">
+            <div className="search-shell flex flex-col gap-2 rounded-xl border bg-card p-2 sm:flex-row sm:items-center focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background">
+              <div className="flex flex-1 items-center gap-2">
               <svg
                 aria-hidden="true"
                 viewBox="0 0 24 24"
@@ -79,9 +80,10 @@ export default function HomePage() {
                 placeholder="Paste a study title, question, or DOI…"
                 className="h-11 min-w-0 flex-1 rounded-lg bg-transparent px-2 text-[15px] outline-none placeholder:text-muted-foreground/70"
               />
+              </div>
               <button
                 type="submit"
-                className="h-11 shrink-0 rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2"
+                className="h-11 w-full rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 sm:w-auto sm:shrink-0"
               >
                 Search
               </button>
@@ -150,11 +152,15 @@ export default function HomePage() {
               Examples to try:
             </p>
             <div className="mt-2.5 flex flex-wrap justify-center gap-2">
-              {EXAMPLES.map((ex) => (
+              {EXAMPLES.map((ex, i) => (
                 <Link
                   key={ex.query}
                   href={`/search?q=${encodeURIComponent(ex.query)}`}
-                  className="hover-lift rounded-full border bg-card px-3.5 py-1.5 text-xs text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                  className={
+                    "rounded-full border bg-card px-3.5 py-1.5 text-xs text-muted-foreground hover:border-primary/40 hover:text-foreground" +
+                    (i < 2 ? " hidden sm:inline-flex" : "") +
+                    " hover-lift"
+                  }
                 >
                   {ex.label}
                 </Link>
@@ -171,7 +177,7 @@ export default function HomePage() {
 
       {/* Discover → Save → Cite */}
       <section className="border-t bg-card/40">
-        <div className="mx-auto grid max-w-6xl gap-4 px-4 py-14 sm:grid-cols-3 sm:px-6">
+        <div className="mx-auto grid max-w-6xl gap-4 px-4 py-10 sm:grid-cols-3 sm:px-6 sm:py-14">
           {STEPS.map((step, i) => (
             <Card key={step.title} className="hover-lift">
               <CardContent className="p-5">
@@ -196,7 +202,7 @@ export default function HomePage() {
       </section>
 
       {/* Tools preview */}
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 className="font-serif text-2xl font-semibold tracking-tight">
             {brand.features.tools}
