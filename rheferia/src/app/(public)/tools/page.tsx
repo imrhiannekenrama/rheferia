@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { TOOLS_BY_GROUP } from "@/lib/conversions/tool-registry";
-import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
   title: "Tools",
@@ -15,10 +14,9 @@ export default function ToolsPage() {
         Rheferia Tools
       </h1>
       <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-        Conversion and PDF tools for research documents. Tools marked
-        &quot;On your device&quot; run entirely in your browser — those
-        files are never uploaded. Cloud tools send your file to a
-        configured conversion provider and say so before you upload.
+        Conversion and PDF tools for research documents. Every tool runs
+        entirely in your browser — your files are never uploaded
+        anywhere.
       </p>
 
       <div className="mt-8 space-y-10">
@@ -36,9 +34,6 @@ export default function ToolsPage() {
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span className="font-medium">{tool.name}</span>
-                      <Badge variant={tool.execution === "browser" ? "success" : "secondary"}>
-                        {tool.execution === "browser" ? "On your device" : "Cloud converter"}
-                      </Badge>
                     </div>
                     <p className="mt-1 text-sm text-muted-foreground">{tool.purpose}</p>
                   </Link>

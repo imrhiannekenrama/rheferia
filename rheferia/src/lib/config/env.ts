@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Server-side environment configuration. Server-only: never import from a
  * client component. Validated lazily so an unconfigured build can render
  * public pages without crashing during prerender.
@@ -20,9 +20,6 @@ export interface AppEnvConfig {
   supabaseUrl?: string;
   supabasePublishableKey?: string;
   tempFileRetentionHours: number;
-  maxCloudUploadMiB: number;
-  maxDailyCloudConversions: number;
-  maxConcurrentCloudConversions: number;
   rateLimitSecret: string;
 }
 
@@ -50,11 +47,6 @@ export function appEnvConfig(): AppEnvConfig {
     supabaseUrl: optional("NEXT_PUBLIC_SUPABASE_URL"),
     supabasePublishableKey: optional("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY"),
     tempFileRetentionHours: Number(process.env.TEMP_FILE_RETENTION_HOURS ?? 24),
-    maxCloudUploadMiB: Number(process.env.MAX_CLOUD_UPLOAD_MIB ?? 25),
-    maxDailyCloudConversions: Number(process.env.MAX_DAILY_CLOUD_CONVERSIONS ?? 5),
-    maxConcurrentCloudConversions: Number(
-      process.env.MAX_CONCURRENT_CLOUD_CONVERSIONS ?? 2,
-    ),
     rateLimitSecret: process.env.RATE_LIMIT_SECRET ?? "dev-only-insecure",
   };
 }
@@ -73,6 +65,5 @@ export function preflightReport(): Array<{ key: string; present: boolean; note?:
     { key: "UNPAYWALL_EMAIL", present: Boolean(optional("UNPAYWALL_EMAIL")), note: "Open-access resolution" },
     { key: "SEMANTIC_SCHOLAR_API_KEY", present: Boolean(optional("SEMANTIC_SCHOLAR_API_KEY")), note: "Optional extra source" },
     { key: "BRAVE_SEARCH_API_KEY", present: Boolean(optional("BRAVE_SEARCH_API_KEY")), note: "Web results (reports, theses, PDFs)" },
-    { key: "CLOUDCONVERT_API_KEY", present: Boolean(optional("CLOUDCONVERT_API_KEY")), note: "PDF ↔ Word cloud conversions" },
   ];
 }

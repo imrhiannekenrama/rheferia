@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Privacy" };
 
@@ -33,9 +33,9 @@ export default function PrivacyPage() {
           <h2 className="font-semibold text-foreground">External providers</h2>
           <p className="mt-1">
             Searches send your query to the research sources configured for
-            this site (for example OpenAlex and Crossref). Cloud conversions
-            send your selected file to the configured conversion provider.
-            The interface tells you before either happens.
+            this site (for example OpenAlex and Crossref). Document tools
+            never send your file anywhere: all processing happens in your
+            browser, on your device.
           </p>
         </div>
         <div>

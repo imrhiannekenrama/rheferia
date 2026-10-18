@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { brand } from "@/lib/config/brand";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -140,8 +140,8 @@ export default function HomePage() {
         </div>
 
         <p className="mt-4 text-xs text-muted-foreground">
-          No account needed to try a search. Projects, citation exports,
-          and cloud conversions need a free account.
+          No account needed to try a search. Projects and citation exports
+          need a free account.
         </p>
       </section>
 
@@ -175,15 +175,16 @@ export default function HomePage() {
           </Link>
         </div>
         <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-          Convert PDF to Word and back, extract text, merge, split, rotate,
-          and more. Many tools run entirely in your browser.
+          Extract text, merge, split, rotate, watermark, convert images
+          and more. Every tool runs entirely in your browser — your files
+          are never uploaded anywhere.
         </p>
         <div className="mt-5 grid gap-3 sm:grid-cols-4">
           {[
-            { name: "PDF → Word", slug: "pdf-to-word" },
-            { name: "Word → PDF", slug: "word-to-pdf" },
             { name: "Merge PDFs", slug: "merge-pdf" },
             { name: "PDF → Text", slug: "pdf-to-text" },
+            { name: "Rotate PDF pages", slug: "rotate-pdf" },
+            { name: "Split PDF", slug: "split-pdf" },
           ].map((tool) => (
             <Link
               key={tool.slug}
@@ -192,9 +193,7 @@ export default function HomePage() {
             >
               {tool.name}
               <span className="mt-1 block text-xs font-normal text-muted-foreground">
-                {tool.slug === "pdf-to-word" || tool.slug === "word-to-pdf"
-                  ? "Cloud converter"
-                  : "Processed on your device"}
+                Processed on your device
               </span>
             </Link>
           ))}

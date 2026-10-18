@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "How it works",
@@ -46,12 +46,10 @@ export default function HowItWorksPage() {
       <section className="mt-6">
         <h2 className="font-semibold">Document tools</h2>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          Tools marked &quot;Processed on your device&quot; run entirely in
-          your browser — the file is not uploaded anywhere. Cloud
-          conversions (PDF to Word, Word to PDF) send your file to a
-          configured conversion provider and clearly say so before you
-          upload. Converted files are your documents; Rheferia never claims
-          a converted file is the publisher&apos;s original.
+          Every tool runs entirely in your browser — the file is not
+          uploaded anywhere, to any server, ever. Output files are your
+          documents; Rheferia never claims a converted file is the
+          publisher&apos;s original.
         </p>
       </section>
 
