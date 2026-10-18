@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+next-env.d.ts
+
+# Production build
+build/
+dist/
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.pem
+.env.production
+
+# Supabase local
+supabase/.branches
+supabase/.temp
+
+# Testing
+coverage/
+playwright-report/
+test-results/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor and OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Packaging output
+rheferia.zip
+*.zip

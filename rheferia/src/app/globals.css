@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Rheferia design tokens.
+  Light: warm ivory background, deep ink text, restrained emerald primary,
+  muted brass accent used sparingly. Dark theme is deliberately designed
+  (not mechanically inverted) with adequate contrast.
+*/
+:root {
+  --background: #f7f6f2; /* warm ivory */
+  --foreground: #162329; /* deep ink */
+
+  --card: #ffffff;
+  --card-foreground: #162329;
+
+  --popover: #ffffff;
+  --popover-foreground: #162329;
+
+  --primary: #146b57; /* restrained emerald */
+  --primary-foreground: #f7fbf9;
+
+  --secondary: #eceae2;
+  --secondary-foreground: #35434a;
+
+  --muted: #eeece5;
+  --muted-foreground: #5b6a71;
+
+  --accent: #f1ece0; /* faint brass tint */
+  --accent-foreground: #7a5f2c;
+
+  --destructive: #a83c34;
+  --destructive-foreground: #fdf6f5;
+
+  --border: #e1ded4;
+  --input: #d4d0c4;
+  --ring: #146b57;
+
+  --radius: 0.5rem;
+
+  /* Brass accent for sparing decorative use */
+  --brass: #a17d40;
+}
+
+.dark {
+  --background: #10181c;
+  --foreground: #e8eef0; /* soft paper, not pure white */
+
+  --card: #182125;
+  --card-foreground: #e8eef0;
+
+  --popover: #1b2529;
+  --popover-foreground: #e8eef0;
+
+  --primary: #4fb49a; /* lifted emerald for dark contrast */
+  --primary-foreground: #0c1512;
+
+  --secondary: #22313a;
+  --secondary-foreground: #d3dee1;
+
+  --muted: #1d2a30;
+  --muted-foreground: #9db1b8;
+
+  --accent: #2a2a20;
+  --accent-foreground: #d4b878;
+
+  --destructive: #e0766c;
+  --destructive-foreground: #1a0f0e;
+
+  --border: #26343b;
+  --input: #2e3f47;
+  --ring: #4fb49a;
+
+  --brass: #c3a266;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brass: var(--brass);
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Readable body text: 15-16px with comfortable line height */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-size: 15.5px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Respect reduced-motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Reading measure for abstracts and reference lists (65-80ch) */
+.reading-measure {
+  max-width: 72ch;
+}
