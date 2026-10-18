@@ -1,12 +1,12 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
 /*
   Rheferia design tokens.
-  Light: warm ivory background, deep ink text, restrained emerald primary,
-  muted brass accent used sparingly. Dark theme is deliberately designed
-  (not mechanically inverted) with adequate contrast.
+  Light: warm ivory with layered emerald/brass tints, deep ink text,
+  restrained emerald primary, brass accent used sparingly.
+  Dark theme deliberately designed with adequate contrast.
 */
 :root {
   --background: #f7f6f2; /* warm ivory */
@@ -37,10 +37,14 @@
   --input: #d4d0c4;
   --ring: #146b57;
 
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 
   /* Brass accent for sparing decorative use */
   --brass: #a17d40;
+
+  /* Layered soft shadows */
+  --shadow-soft: 0 1px 2px rgba(22, 35, 41, 0.05), 0 4px 14px rgba(22, 35, 41, 0.06);
+  --shadow-lift: 0 2px 4px rgba(22, 35, 41, 0.06), 0 12px 28px rgba(22, 35, 41, 0.12);
 }
 
 .dark {
@@ -73,6 +77,9 @@
   --ring: #4fb49a;
 
   --brass: #c3a266;
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.25), 0 4px 14px rgba(0, 0, 0, 0.3);
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.3), 0 12px 28px rgba(0, 0, 0, 0.45);
 }
 
 @theme inline {
@@ -97,10 +104,10 @@
   --color-ring: var(--ring);
   --color-brass: var(--brass);
 
-  --radius-sm: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 6px);
 
   /* Readable body text: 15-16px with comfortable line height */
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
@@ -119,10 +126,20 @@
 
   body {
     background-color: var(--background);
+    background-image:
+      radial-gradient(1100px 480px at 50% -120px, rgba(20, 107, 87, 0.07), transparent 70%),
+      linear-gradient(180deg, #faf9f5 0%, #f7f6f2 45%, #f3f1ea 100%);
+    background-attachment: fixed;
     color: var(--foreground);
     font-size: 15.5px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(1100px 480px at 50% -120px, rgba(79, 180, 154, 0.08), transparent 70%),
+      linear-gradient(180deg, #131c21 0%, #10181c 45%, #0c1216 100%);
   }
 
   /* Respect reduced-motion preferences */
@@ -141,4 +158,72 @@
 /* Reading measure for abstracts and reference lists (65-80ch) */
 .reading-measure {
   max-width: 72ch;
+}
+
+/* Soft radial glow behind the hero: emerald from the left, brass from the right */
+.hero-glow {
+  background:
+    radial-gradient(420px 260px at 12% 18%, rgba(20, 107, 87, 0.12), transparent 68%),
+    radial-gradient(480px 300px at 88% 12%, rgba(161, 125, 64, 0.12), transparent 68%),
+    radial-gradient(520px 320px at 50% 95%, rgba(20, 107, 87, 0.05), transparent 70%);
+}
+
+.dark .hero-glow {
+  background:
+    radial-gradient(420px 260px at 12% 18%, rgba(79, 180, 154, 0.1), transparent 68%),
+    radial-gradient(480px 300px at 88% 12%, rgba(195, 162, 102, 0.08), transparent 68%),
+    radial-gradient(520px 320px at 50% 95%, rgba(79, 180, 154, 0.05), transparent 70%);
+}
+
+/* Card hover: gentle lift with a deeper shadow */
+.hover-lift {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Entrance animation for hero content */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
+
+.fade-up-1 {
+  animation-delay: 0.06s;
+}
+
+.fade-up-2 {
+  animation-delay: 0.12s;
+}
+
+.fade-up-3 {
+  animation-delay: 0.18s;
+}
+
+.fade-up-4 {
+  animation-delay: 0.24s;
+}
+
+/* Search bar presence */
+.search-shell {
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.search-shell:focus-within {
+  box-shadow: var(--shadow-lift);
+  border-color: var(--primary);
 }
