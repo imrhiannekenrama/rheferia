@@ -36,19 +36,25 @@ const yearField = z.preprocess(
     .max(2100, "Year must be 2100 or earlier")
     .optional(),
 );
+/** Blank form inputs submit as "" — treat any blank field as "not provided". */
+const blank = <T extends z.ZodTypeAny>(schema: T) =>
+  z.preprocess(
+    (v) => (typeof v === "string" && v.trim() === "" ? undefined : v),
+    schema,
+  );
 export const searchRequestSchema = z.object({
   q: z.string().trim().min(1, "Enter something to search for").max(500, "Query is too long"),
-  mode: z.enum(["auto", "title-question", "exact-title", "keywords", "advanced"]).default("auto"),
-  sort: z.enum(["relevance", "newest", "oldest", "citations"]).default("relevance"),
+  mode: blank(z.enum(["auto", "title-question", "exact-title", "keywords", "advanced"]).default("auto")),
+  sort: blank(z.enum(["relevance", "newest", "oldest", "citations"]).default("relevance")),
   yearFrom: yearField,
   yearTo: yearField,
-  types: z.string().max(200).optional(), // comma-separated enum values
-  providers: z.string().max(200).optional(), // comma-separated enum values
-  openAccess: z.enum(["true", "false"]).optional(),
-  exactPhrase: z.string().max(300).optional(),
-  excluded: z.string().max(300).optional(),
-  author: z.string().max(200).optional(),
-  cursor: z.string().max(512).optional(),
+  types: blank(z.string().max(200).optional()), // comma-separated enum values
+  providers: blank(z.string().max(200).optional()), // comma-separated enum values
+  openAccess: blank(z.enum(["true", "false"]).optional()),
+  exactPhrase: blank(z.string().max(300).optional()),
+  excluded: blank(z.string().max(300).optional()),
+  author: blank(z.string().max(200).optional()),
+  cursor: blank(z.string().max(512).optional()),
 });
 
 export type ParsedSearchRequest = z.infer<typeof searchRequestSchema>;
