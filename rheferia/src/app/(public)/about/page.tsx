@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { brand } from "@/lib/config/brand";
 
 export const metadata: Metadata = { title: "About" };
@@ -13,11 +14,22 @@ export default function AboutPage() {
       <section className="mt-8 space-y-4 text-sm leading-relaxed text-muted-foreground">
         <div>
           <h2 className="font-semibold text-foreground">Who created it</h2>
-          <p className="mt-1">
-            {brand.name} was created and is maintained by Rhianne
-            (imrhiannekenrama on GitHub). The name {brand.name} is a coined
-            blend of &quot;Rhianne&quot; and &quot;references&quot;.
-          </p>
+          <div className="mt-2 flex items-start gap-4">
+            <Image
+              src="/images/creator.jpg"
+              alt="Portrait of Rhianne Ken S. Rama, creator of Rheferia"
+              width={96}
+              height={96}
+              className="h-24 w-24 flex-shrink-0 rounded-full object-cover ring-1 ring-border"
+              priority={false}
+            />
+            <p className="mt-1">
+              {brand.name} was created and is maintained by{" "}
+              <span className="font-medium text-foreground">Rhianne Ken S. Rama</span>{" "}
+              (imrhiannekenrama on GitHub). The name {brand.name} is a coined
+              blend of &quot;Rhianne&quot; and &quot;references&quot;.
+            </p>
+          </div>
         </div>
 
         <div>
