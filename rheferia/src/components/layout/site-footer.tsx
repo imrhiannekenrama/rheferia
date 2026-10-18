@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { brand } from "@/lib/config/brand";
 
 export function SiteFooter() {
@@ -10,6 +10,9 @@ export function SiteFooter() {
           the sources we search.
         </p>
         <div className="flex gap-4">
+          <Link href="/about" className="hover:text-foreground">
+            About
+          </Link>
           <Link href="/how-it-works" className="hover:text-foreground">
             How it works
           </Link>
