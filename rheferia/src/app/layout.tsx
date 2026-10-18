@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       "Search scholarly sources, build reference lists in six citation styles, and use free in-browser PDF tools. Your files never leave your device.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image-v2.jpg",
         width: 1200,
         height: 630,
         alt: `Rheferia — Where ideas find their sources.`,
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: `Rheferia — Where ideas find their sources.`,
     description:
       "Search scholarly sources, build reference lists in six citation styles, and use free in-browser PDF tools.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image-v2.jpg"],
   },
 };
 
