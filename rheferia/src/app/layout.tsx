@@ -1,5 +1,6 @@
 ﻿import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rheferia.vercel.app"),
@@ -66,6 +67,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         {children}
+        <Analytics />
       </body>
     </html>
   );
